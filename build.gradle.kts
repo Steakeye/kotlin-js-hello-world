@@ -23,6 +23,7 @@ kotlin {
     }
     //js(BOTH) {
     js {
+        //useCommonJs()
         browser {
             /*testTask {
                 useKarma {
@@ -30,9 +31,9 @@ kotlin {
                     webpackConfig.cssSupport.enabled = true
                 }
             }*/
-            /*webpackTask {
+            webpackTask {
                 output.libraryTarget = "commonjs-module"
-            }*/
+            }
         }
 
         /*nodejs {
@@ -41,10 +42,11 @@ kotlin {
         //compilations.all
         //useCommonJs()
         //binaries.executable()
-    }/*.compilations.all {
+    }.compilations.all {
         kotlinOptions.main = "noCall"
-        kotlinOptions.outputFile = "$project.buildDir.path/js/packages/${project.name}/lib/my_lib.js"
-    }*/
+        //kotlinOptions.outputFile = "$project.buildDir.path/js/packages/${project.name}/lib/my_lib.js"
+        kotlinOptions.moduleKind = "plain"
+    }
 
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
