@@ -1,9 +1,10 @@
-import kotlin.js.ExperimentalJsExport
+//import kotlin.*
+//import kotlin.js.ExperimentalJsExport
 
-@ExperimentalJsExport
+//@ExperimentalJsExport
 expect object Example {
     fun sayHello()
 }
 fun printHelloWorld() {
-    println("hello world")
+    //println("hello world")
 }

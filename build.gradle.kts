@@ -1,8 +1,9 @@
 import org.jetbrains.kotlin.cli.jvm.main
 
 plugins {
-    kotlin("multiplatform") version "1.4.21"
+    kotlin("multiplatform") version "1.3.72"
     `maven-publish`
+    `kotlin-dce-js`
 }
 
 group = "me.steakeye"
@@ -32,8 +33,9 @@ kotlin {
                 }
             }*/
             webpackTask {
-                output.libraryTarget = "umd"
-                outputFileName = "test-lib-umd.js"
+                output.libraryTarget = "var"
+                output.library = "hello"
+                outputFileName = "test-lib-var-umd.js"
             }
         }
 
@@ -42,11 +44,11 @@ kotlin {
         }*/
         //compilations.all
         //useCommonJs()
-        binaries.executable()
+        //binaries.executable()
     }.compilations.all {
         kotlinOptions.main = "noCall"
         //kotlinOptions.outputFile = "$project.buildDir.path/js/packages/${project.name}/lib/my_lib.js"
-        //kotlinOptions.moduleKind = "plain"
+        kotlinOptions.moduleKind = "umd"
     }
 
     val hostOs = System.getProperty("os.name")
