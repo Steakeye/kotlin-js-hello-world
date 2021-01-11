@@ -32,7 +32,8 @@ kotlin {
                 }
             }*/
             webpackTask {
-                output.libraryTarget = "commonjs-module"
+                output.libraryTarget = "umd"
+                outputFileName = "test-lib-umd.js"
             }
         }
 
@@ -41,11 +42,11 @@ kotlin {
         }*/
         //compilations.all
         //useCommonJs()
-        //binaries.executable()
+        binaries.executable()
     }.compilations.all {
         kotlinOptions.main = "noCall"
         //kotlinOptions.outputFile = "$project.buildDir.path/js/packages/${project.name}/lib/my_lib.js"
-        kotlinOptions.moduleKind = "plain"
+        //kotlinOptions.moduleKind = "plain"
     }
 
     val hostOs = System.getProperty("os.name")
