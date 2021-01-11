@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.cli.jvm.main
+
 plugins {
     kotlin("multiplatform") version "1.4.21"
     `maven-publish`
@@ -19,16 +21,31 @@ kotlin {
             useJUnit()
         }
     }
-    js(BOTH) {
+    //js(BOTH) {
+    js {
         browser {
-            testTask {
+            /*testTask {
                 useKarma {
                     useChromeHeadless()
                     webpackConfig.cssSupport.enabled = true
                 }
-            }
+            }*/
+            /*webpackTask {
+                output.libraryTarget = "commonjs-module"
+            }*/
         }
-    }
+
+        /*nodejs {
+            useCommonJs()
+        }*/
+        //compilations.all
+        //useCommonJs()
+        //binaries.executable()
+    }/*.compilations.all {
+        kotlinOptions.main = "noCall"
+        kotlinOptions.outputFile = "$project.buildDir.path/js/packages/${project.name}/lib/my_lib.js"
+    }*/
+
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
